@@ -5,10 +5,14 @@
 
 Добавляем пользователя в систему:
 
-adduser USER -ingroup sudo && su USER
+```bash
+adduser 'USER' -ingroup sudo && su 'USER'
+```
 
 Скачиваем и запускаем скирипт:
 
+```bash
 cd && wget https://raw.githubusercontent.com/Achi101/Nu-Autostart/master/nu-start && chmod u+x ~/nu-start && ./nu-start
+```
 
 Вводим требуемые значения

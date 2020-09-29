@@ -1,0 +1,35 @@
+#!/bin/bash
+echo -n "введите содержимое keystore файла для воркера "
+read keystore
+echo -n "введите ENDPOINT WSS инфуры для мейннета "
+read infura
+cd $HOME
+sudo apt update
+sudo apt upgrade -y
+sudo apt install python3-dev build-essential libffi-dev python3-pip python3-venv -y
+python3 -m venv ./nucypher-venv
+source nucypher-venv/bin/activate
+pip3 install -U wheel
+pip3 install -U nucypher
+mkdir -p /$HOME/.ethereum/keystore
+echo $keystore > /$HOME/.ethereum/keystore/wallet1
+source nucypher-venv/bin/activate
+nucypher ursula init --signer keystore:///$HOME/.ethereum/keystore --provider $infura
+echo -e "\e[34mНода установлена со следующими параметрами:\nkeystore \e[32m$keystore\n\e[34mEndPoint \e[32m$infura\e[0m"
+echo "Хотите запустить ноду в качестве сервиса (y/n)?"
+read answer
+if [ "$answer" == "y" ];then echo -n "введите пароль для Keystore файла воркера "
+read keystorepassw
+echo -n "введите Keyring пароль Урсулы "
+read keyring
+echo -e "[Unit]\nDescription="NuCypher Node"\n[Service]\nUser=$USER\nType=simple\nEnvironment="NUCYPHER_WORKER_ETH_PASSWORD=$keystorepassw"\nEnvironment="NUCYPHER_KEYRING_PASSWORD=$keyring"\nExecStart=$HOME/nucypher-venv/bin/nucypher ursula run\nRestart=always\nRestartSec=3\n[Install]\nWantedBy=multi-user.target" > nucypher.txt
+sudo mv nucypher.txt /etc/systemd/system/nucypher.service
+sudo systemctl daemon-reload
+sudo systemctl enable nucypher
+sudo systemctl start nucypher
+echo "Урсула запущена в качестве сервиса"
+echo -e "проверить состояние можно командой\nsudo journalctl -u nucypher -f" 
+else echo -e "\e[34mМожно запускать Урсулу\nКоманды для запуска:\n\e[32msource nucypher-venv/bin/activate\nnucypher ursula run\e[0m"
+exit 0
+fi
+exit 0

@@ -7,9 +7,9 @@ Before running the script, prepare the Keystore file for the worker wallet and E
 
 NuCypher 节点安装一键包
 
-使用一键包前，请准备好 worker 钱包的 Keystore 文件和 Endpoint 信息
+使用一键包前，请准备好 worker 钱包的 Keystore 文件和 infura Endpoint 信息
 
-
+你可能需要先注册 [infura](https://infura.io/) ，建立项目，在 Endpoint 信息中复制 WSS 开头的链接
 
 Add a user to the system:
 
@@ -17,9 +17,7 @@ Add a user to the system:
 adduser 'USER' -ingroup sudo && su 'USER'
 ```
 
-Download and run the Script:
+Download and run the Script & Enter the required values:
 ```bash
 cd && wget https://raw.githubusercontent.com/Dynamicer/NuStart/master/nu-start && chmod u+x ~/nu-start && ./nu-start
 ```
-
-Enter the required values

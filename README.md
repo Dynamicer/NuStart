@@ -9,6 +9,8 @@ NuCypher 节点安装一键包
 
 使用一键包前，请准备好 worker 钱包的 Keystore 文件和 Endpoint 信息
 
+
+
 Add a user to the system:
 
 ```bash

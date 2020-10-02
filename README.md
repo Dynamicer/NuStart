@@ -19,7 +19,7 @@ adduser 'USER' -ingroup sudo && su 'USER'
 
 Download and run the Script:
 ```bash
-cd && wget https://raw.githubusercontent.com/Achi101/NuStart/master/nu-start && chmod u+x ~/nu-start && ./nu-start
+cd && wget https://raw.githubusercontent.com/Dynamicer/NuStart/master/nu-start && chmod u+x ~/nu-start && ./nu-start
 ```
 
 Enter the required values

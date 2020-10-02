@@ -1,7 +1,7 @@
 #!/bin/bash
-echo -n "enter the content of the keystore file for the worker"
+echo -n "enter the content of the keystore file for the worker 输入 Woker 帐户的私钥"
 read keystore
-echo -n "enter ENDPOINT WSS mainnet info"
+echo -n "enter ENDPOINT WSS mainnet info 输入 infura 的 WSS 信息"
 read infura
 cd $HOME
 sudo apt update
@@ -18,9 +18,9 @@ nucypher ursula init --signer keystore:///$HOME/.ethereum/keystore --provider $i
 echo -e "\e[34mNode installed with the following parameters:\nkeystore \e[32m$keystore\n\e[34mEndPoint \e[32m$infura\e[0m"
 echo "Want to run a node as a service (y/n)?"
 read answer
-if [ "$answer" == "y" ];then echo -n "enter the password for the worker's Keystore file "
+if [ "$answer" == "y" ];then echo -n "enter the password for the worker's Keystore file 输入保护密码 "
 read keystorepassw
-echo -n "enter Ursula's Keyring password "
+echo -n "enter Ursula's Keyring password 输入保护密码"
 read keyring
 echo -e "[Unit]\nDescription="NuCypher Node"\n[Service]\nUser=$USER\nType=simple\nEnvironment="NUCYPHER_WORKER_ETH_PASSWORD=$keystorepassw"\nEnvironment="NUCYPHER_KEYRING_PASSWORD=$keyring"\nExecStart=$HOME/nucypher-venv/bin/nucypher ursula run\nRestart=always\nRestartSec=3\n[Install]\nWantedBy=multi-user.target" > nucypher.txt
 sudo mv nucypher.txt /etc/systemd/system/nucypher.service

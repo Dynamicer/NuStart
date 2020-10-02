@@ -5,7 +5,7 @@ NuCypher node installation automation
 
 Before running the script, prepare the Keystore file for the worker wallet and Endpoint info
 
-NuCypher 节点安装一键包
+NuCypher 节点安装一键包（适用 Ubuntu）
 
 使用一键包前，请准备好 worker 钱包的 Keystore 文件和 infura Endpoint 信息
 

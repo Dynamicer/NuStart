@@ -1,7 +1,7 @@
 #!/bin/bash
-echo -n "введите содержимое keystore файла для воркера "
+echo -n "enter the content of the keystore file for the worker"
 read keystore
-echo -n "введите ENDPOINT WSS инфуры для мейннета "
+echo -n "enter ENDPOINT WSS mainnet info"
 read infura
 cd $HOME
 sudo apt update
@@ -15,21 +15,21 @@ mkdir -p /$HOME/.ethereum/keystore
 echo $keystore > /$HOME/.ethereum/keystore/wallet1
 source nucypher-venv/bin/activate
 nucypher ursula init --signer keystore:///$HOME/.ethereum/keystore --provider $infura
-echo -e "\e[34mНода установлена со следующими параметрами:\nkeystore \e[32m$keystore\n\e[34mEndPoint \e[32m$infura\e[0m"
-echo "Хотите запустить ноду в качестве сервиса (y/n)?"
+echo -e "\e[34mNode installed with the following parameters:\nkeystore \e[32m$keystore\n\e[34mEndPoint \e[32m$infura\e[0m"
+echo "Want to run a node as a service (y/n)?"
 read answer
-if [ "$answer" == "y" ];then echo -n "введите пароль для Keystore файла воркера "
+if [ "$answer" == "y" ];then echo -n "enter the password for the worker's Keystore file "
 read keystorepassw
-echo -n "введите Keyring пароль Урсулы "
+echo -n "enter Ursula's Keyring password "
 read keyring
 echo -e "[Unit]\nDescription="NuCypher Node"\n[Service]\nUser=$USER\nType=simple\nEnvironment="NUCYPHER_WORKER_ETH_PASSWORD=$keystorepassw"\nEnvironment="NUCYPHER_KEYRING_PASSWORD=$keyring"\nExecStart=$HOME/nucypher-venv/bin/nucypher ursula run\nRestart=always\nRestartSec=3\n[Install]\nWantedBy=multi-user.target" > nucypher.txt
 sudo mv nucypher.txt /etc/systemd/system/nucypher.service
 sudo systemctl daemon-reload
 sudo systemctl enable nucypher
 sudo systemctl start nucypher
-echo "Урсула запущена в качестве сервиса"
-echo -e "проверить состояние можно командой\nsudo journalctl -u nucypher -f" 
-else echo -e "\e[34mМожно запускать Урсулу\nКоманды для запуска:\n\e[32msource nucypher-venv/bin/activate\nnucypher ursula run\e[0m"
+echo "Ursula launched as a service"
+echo -e "you can check the status with the command\nsudo journalctl -u nucypher -f" 
+else echo -e "\e[34mYou can run Ursula \ nCommands to run:\n\e[32msource nucypher-venv/bin/activate\nnucypher ursula run\e[0m"
 exit 0
 fi
 exit 0

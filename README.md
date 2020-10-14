@@ -1,6 +1,6 @@
 # Legacy Project
 
-GO TO [https://github.com/Dynamicer/NuCypher-Helper][https://github.com/Dynamicer/NuCypher-Helper]
+GO TO [https://github.com/Dynamicer/NuCypher-Helper](https://github.com/Dynamicer/NuCypher-Helper)
 
 # NuStart
 This is a pure translation for [https://github.com/Achi101/NuStart](https://github.com/Achi101/NuStart) .
